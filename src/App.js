@@ -59,10 +59,11 @@ const App = () => {
 
   async function onEditEvent(id) {
     const getResponse = await axios.get(`https://detangled.in/develop/e25e2cbf-e644-4325-b2f9-073571845a9d/events/${id}`);
+    console.log(getResponse);
     const requestObject = {
       id: getResponse.id,
-      destination: newDestination,
-      comment: newComment,
+      destination: newDestination === "" ? getResponse.destination : newDestination,
+      comment: newComment === "" ? getResponse.comment : newComment,
       color: getResponse.color,
       start: getResponse.start,
       duration: getResponse.duration
